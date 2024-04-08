@@ -1,0 +1,36 @@
+{% extends 'Users/base.html' %}
+{% include 'Users/navbar.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}event detail{% endblock title %}
+</head>
+<body>
+    {% block content %}
+    <h1>Event Detail</h1>
+    <h2>{{ event.name }}</h2>
+    <p><strong>Date:</strong> {{ event.date }}</p>
+    <p><strong>Time:</strong> {{ event.time }}</p>
+    <p><strong>Location:</strong> {{ event.location }}</p>
+    <p><strong>Items:</strong></p>
+    <ul>
+        {% for item in event.items %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+    <p><strong>Event Image:</strong></p>
+    <img src="{{ event.eventImageUrl }}" alt="Event Image" width="200">
+
+    <h2>RSVPs</h2>
+    <p><strong>Total Guests:</strong> {{ total_guests }}</p>
+    <ul>
+        {% for rsvp in rsvps %}
+            <li>{{ rsvp.name }}{% if rsvp.additionalPeople %} +{{ rsvp.additionalPeople|length }}{% endif %}</li>
+        {% endfor %}
+    </ul>
+    {% endblock content %}
+</body>
+</html>
