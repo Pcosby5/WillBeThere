@@ -10,6 +10,15 @@
             <div class="card-header">
                 <h1>Sign In</h1>
             </div>
+                <!-- Add this code where you want to display the success message -->
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-success" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
             <div class="card-body">
                 <form method="post">
                     {% csrf_token %}
