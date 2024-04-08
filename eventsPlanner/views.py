@@ -3,6 +3,7 @@ from .models import Event, RSVP
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import AddEventForm, AddRSVPForm
+from django.contrib.auth.models import User
 
 class AddEventCreateView(LoginRequiredMixin, CreateView):
     model = Event
@@ -11,9 +12,10 @@ class AddEventCreateView(LoginRequiredMixin, CreateView):
     template_name = 'eventsPlanner/add_events.html'
     success_url = reverse_lazy('event_detail')
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['organizer'].queryset = User.objects.filter(is_active=True)
+        return form
 
 class AddRSVPCreateView(LoginRequiredMixin, CreateView):
     model = RSVP
