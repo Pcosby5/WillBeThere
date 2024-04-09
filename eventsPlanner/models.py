@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import User
 from django.urls import reverse
 
@@ -9,9 +10,10 @@ class Event(models.Model):
     date = models.DateField()
     time = models.TimeField()
     location = models.CharField(max_length=200)
-    # items = models.JSONField()  # Array of strings
-    items = models.TextField(max_length=200)
+    items = ArrayField(models.CharField(max_length=100), blank=True, default=list)
+    # items = models.TextField(max_length=200)
     eventImageUrl = models.URLField()
+
 
     def __str__(self):
         return self.name
@@ -19,15 +21,23 @@ class Event(models.Model):
     def get_absolute_url(self):
         return reverse("event_detail", kwargs={"pk": self.pk})
 
+
+    @property
+    def total_guests(self):
+        return sum(rsvp.total_attendees for rsvp in self.rsvp_set.all())
+
+
 class RSVP(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     congratulatoryMessage = models.TextField(blank=True, null=True)
-    items = models.TextField(max_length=200)
+    items = ArrayField(models.CharField(max_length=100), blank=True, default=list)
     name = models.CharField(max_length=200)
     email = models.EmailField()
     attending = models.BooleanField()
     # additionalPeople = models.JSONField()  # Array of strings
-    additionalPeople = models.TextField(max_length=200)
+    additionalPeople = ArrayField(models.CharField(max_length=100), blank=True, default=list)
+    total_attendees = models.IntegerField(default=1)
+
 
     def __str__(self):
         return self.name

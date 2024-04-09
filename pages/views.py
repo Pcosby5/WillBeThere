@@ -19,6 +19,7 @@ class HomeListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Event.objects.all().order_by('date')
 
+
 def about(request):
 
     return render(request, 'pages/about.html')
