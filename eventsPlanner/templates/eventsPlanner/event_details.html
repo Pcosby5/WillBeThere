@@ -15,6 +15,7 @@
     <p><strong>Date:</strong> {{ object.date }}</p>
     <p><strong>Time:</strong> {{ object.time }}</p>
     <p><strong>Location:</strong> {{ object.location }}</p>
+    <p><strong>Message:</strong> {{ object.congratulatoryMessage }}</p>
     <p><strong>Items:</strong></p>
     <ul>
         {% for item in event.items %}
@@ -28,7 +29,7 @@
     <p><strong>Total Guests:</strong> {{ total_guests }}</p>
     <ul>
         {% for rsvp in rsvps %}
-            <li>{{ r_s_vps.name }}{% if r_s_vps.additionalPeople %} +{{ r_s_vps.additionalPeople|length }}{% endif %}</li>
+            <li>{{ rsvps.name }}{% if rsvps.additionalPeople %} + {{ rsvps.additionalPeople|length }}{% endif %}</li>
         {% endfor %}
     </ul>
     {% endblock content %}

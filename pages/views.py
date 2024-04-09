@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from eventsPlanner.models import Event, RSVP
-from django.db.models import Prefetch
+# from django.db.models import Prefetch
 from django.contrib.auth.mixins import LoginRequiredMixin
 # from django.http import HttpResponse
 
