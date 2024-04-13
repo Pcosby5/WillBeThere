@@ -4,8 +4,8 @@ myenv/
 # Ignore Django's database file
 db.sqlite3
 
+# # settings.py
 # settings.py
-settings.py
 
 # Ignore IDE or editor specific files and directories
 .idea/
