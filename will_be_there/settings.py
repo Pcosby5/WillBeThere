@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import dj_database_url
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-sdws-(u7p5=*^jo2#q26gn6x6ubj_9tk_hap5m=ycz6=k86p8o'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -100,7 +101,8 @@ DATABASES = {
     }
 }
 
-DATABASES["default"] = dj_database_url.parse("postgres://willbethere_user:Fr0zrB1rG6ymQnA7bolqCMKrGc2Zy5XI@dpg-cod4ak20si5c738p9de0-a.oregon-postgres.render.com/willbethere")
+dj_database_url = os.environ.get("DATABASE_URL")
+DATABASES["default"] = dj_database_url.parse("dj_database_url")
 
 
 
