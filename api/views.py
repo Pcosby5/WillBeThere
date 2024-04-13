@@ -2,7 +2,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
-from .serializers import RegisterSerializer, AuthenticationSerializer, UserDetailSerializer
+from .serializers import RegisterSerializer, AuthenticationSerializer, UserDetailSerializer, UserSerializer
 from knox.models import AuthToken
 from django.contrib.auth.models import User
 
@@ -37,6 +37,15 @@ def get_user_by_id(request, user_id):
         return Response(serializer.data)
     else:
         return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
+
+
+
+
+@api_view(['GET'])
+def get_all_users(request):
+    users = User.objects.all()
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)
 
 # @api_view(['GET'])
 # def get_user_data(request):
