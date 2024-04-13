@@ -90,19 +90,25 @@ WSGI_APPLICATION = 'will_be_there.wsgi.application'
 # }
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres.tcigdsgvetbwjzgvtogz',
-        'HOST': 'aws-0-eu-central-1.pooler.supabase.com',
-        'PORT': '5432',
-        'PASSWORD': 'Whatismaths101',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'postgres',
+#         'USER': 'postgres.tcigdsgvetbwjzgvtogz',
+#         'HOST': 'aws-0-eu-central-1.pooler.supabase.com',
+#         'PORT': '5432',
+#         'PASSWORD': 'Whatismaths101',
+#     }
+# }
 
 database_url = os.environ.get("DATABASE_URL")
-DATABASES["default"] = dj_database_url.parse(database_url)
+# Set default database configuration
+
+DATABASES = {
+    'default': dj_database_url.parse(database_url)
+}
+
+# DATABASES["default"] = dj_database_url.parse(database_url)
 
 
 
@@ -141,6 +147,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
