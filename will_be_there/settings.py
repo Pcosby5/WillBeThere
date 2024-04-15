@@ -101,15 +101,36 @@ WSGI_APPLICATION = 'will_be_there.wsgi.application'
 #     }
 # }
 
-database_url = os.environ.get("DATABASE_URL")
-# Set default database configuration
+# Retrieve the value of the DATABASE_URL environment variable
+# database_url = os.environ.get("DATABASE_URL")
 
-DATABASES = {
-    'default': dj_database_url.parse(database_url)
-}
+# # Set default database configuration by parsing the DATABASE_URL
+# # If DATABASE_URL is not set, this will default to using a local database
+# DATABASES = {
+#     'default': dj_database_url.parse(database_url)
+# }
 
 # DATABASES["default"] = dj_database_url.parse(database_url)
 
+# Get the DATABASE_URL from environment variables
+# database_url = "postgres://willbethere_user:Fr0zrB1rG6ymQnA7bolqCMKrGc2Zy5XI@dpg-cod4ak20si5c738p9de0-a.oregon-postgres.render.com/willbethere"
+
+# # Update the default database configuration
+# DATABASES = {
+#     'default': dj_database_url.parse(database_url)
+# }
+
+# Get the DATABASE_URL from environment variables
+database_url = os.environ.get("DATABASE_URL")
+
+# If DATABASE_URL is not set, provide a default value or handle the error accordingly
+if not database_url:
+    raise ValueError("DATABASE_URL environment variable is not set")
+
+# Update the default database configuration
+DATABASES = {
+    'default': dj_database_url.parse(database_url)
+}
 
 
 # Password validation
