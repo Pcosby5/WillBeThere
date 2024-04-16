@@ -4,7 +4,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
-from .serializers import RegisterSerializer, AuthenticationSerializer, UpdateUserSerializer, UserSerializer
+from .serializers import RegisterSerializer, AuthenticationSerializer,  UserSerializer
 from knox.models import AuthToken
 from django.contrib.auth.models import User
 # from rest_framework.generics import CreateAPIView
@@ -49,8 +49,8 @@ class LoginAPIView(knox_views.LoginView):
 
 class UpdateUserAPI(UpdateAPIView):
     queryset = User.objects.all()
-    serializer_class = UpdateUserSerializer
-
+    serializer_class = UserSerializer
+    lookup_field = 'pk'
 
 class UserDeleteView(generics.DestroyAPIView):
     queryset = User.objects.all()

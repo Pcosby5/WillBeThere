@@ -107,8 +107,15 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'first_name', 'last_name')
+        read_only_fields = ('id',)  # Ensure 'username' is not in read_only_fields
 
-
+    def update(self, instance, validated_data):
+        instance.username = validated_data.get('username', instance.username)
+        instance.email = validated_data.get('email', instance.email)
+        instance.first_name = validated_data.get('first_name', instance.first_name)
+        instance.last_name = validated_data.get('last_name', instance.last_name)
+        instance.save()
+        return instance
 
 class AuthenticationSerializer(serializers.Serializer):
     username = serializers.CharField()
@@ -135,17 +142,17 @@ class AuthenticationSerializer(serializers.Serializer):
         return data
 
 
-class UpdateUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('first_name', 'last_name', 'email', 'password')
+# class UpdateUserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ('first_name', 'last_name', 'email', 'password')
 
-    def update(self, instance, validated_data):
-        password = validated_data.pop('password')
-        if password:
-            instance.set_password(password)
-        instance = super().update(instance, validated_data)
-        return instance
+#     def update(self, instance, validated_data):
+#         password = validated_data.pop('password')
+#         if password:
+#             instance.set_password(password)
+#         instance = super().update(instance, validated_data)
+#         return instance
 
 # class UserDetailSerializer(serializers.ModelSerializer):
 #     class Meta:
