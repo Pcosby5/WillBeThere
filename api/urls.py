@@ -1,14 +1,18 @@
 from django.urls import path
 from .import views
-from knox import views as knox_views
-from .views import get_user_by_id
-from .views import get_all_users
+from knox.views import LogoutView, LogoutAllView
+from .views import UserListView, UserDetailView, UserDeleteView
+# from .views import get_user_by_id
+# from .views import get_all_users
 
 urlpatterns = [
-    path('login/', views.login_api),
-    path('user/<int:user_id>/', get_user_by_id, name='get_user_by_id'),
-    path('users/', get_all_users, name='get_all_users'),
-    path('register/', views.register_api),
-    path('logout/', knox_views.LogoutView.as_view()),
-    path('logoutall/', knox_views.LogoutAllView.as_view()),
+    # path('login/', views.login_api),
+    path('login/', views.LoginAPIView.as_view()),
+    path('update-user/<int:pk>/', views.UpdateUserAPI.as_view()),
+    path('user/delete/<int:id>/', UserDeleteView.as_view(), name='user-delete'),
+    path('user/<int:id>/', UserDetailView.as_view(), name='user-detail'),
+    path('users/', UserListView.as_view(), name='user-list'),
+    path('register/', views.RegisterUserAPI.as_view()),
+    path('logout/', LogoutView.as_view()),
+    path('logout-all/', LogoutAllView.as_view()),
 ]

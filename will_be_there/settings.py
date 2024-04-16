@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = "django-insecure-sdws-(u7p5=*^jo2#q26gn6x6ubj_9tk_hap5m=ycz6=k86p8o"
 SECRET_KEY = os.environ.get("SECRET_KEY")
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -101,36 +101,15 @@ WSGI_APPLICATION = 'will_be_there.wsgi.application'
 #     }
 # }
 
-# Retrieve the value of the DATABASE_URL environment variable
-# database_url = os.environ.get("DATABASE_URL")
-
-# # Set default database configuration by parsing the DATABASE_URL
-# # If DATABASE_URL is not set, this will default to using a local database
-# DATABASES = {
-#     'default': dj_database_url.parse(database_url)
-# }
-
-# DATABASES["default"] = dj_database_url.parse(database_url)
-
-# Get the DATABASE_URL from environment variables
-# database_url = "postgres://willbethere_user:Fr0zrB1rG6ymQnA7bolqCMKrGc2Zy5XI@dpg-cod4ak20si5c738p9de0-a.oregon-postgres.render.com/willbethere"
-
-# # Update the default database configuration
-# DATABASES = {
-#     'default': dj_database_url.parse(database_url)
-# }
-
-# Get the DATABASE_URL from environment variables
 database_url = os.environ.get("DATABASE_URL")
+# Set default database configuration
 
-# If DATABASE_URL is not set, provide a default value or handle the error accordingly
-if not database_url:
-    raise ValueError("DATABASE_URL environment variable is not set")
-
-# Update the default database configuration
 DATABASES = {
     'default': dj_database_url.parse(database_url)
 }
+
+DATABASES["default"] = dj_database_url.parse(database_url)
+
 
 
 # Password validation
