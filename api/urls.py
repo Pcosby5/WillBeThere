@@ -7,7 +7,7 @@ from .views import GetProfile
 
 urlpatterns = [
     # path('login/', views.login_api),
-    path('get-profile/', GetProfile.as_view(), name='get_profile'),
+    path('profile/', GetProfile.as_view(), name='profile'),
     path('login/', views.LoginAPIView.as_view()),
     path('update-user/<int:pk>/', views.UpdateUserAPI.as_view()),
     path('user/delete/<int:id>/', UserDeleteView.as_view(), name='user-delete'),
