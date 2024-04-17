@@ -23,7 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = "django-insecure-sdws-(u7p5=*^jo2#q26gn6x6ubj_9tk_hap5m=ycz6=k86p8o"
 SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -90,25 +89,12 @@ WSGI_APPLICATION = 'will_be_there.wsgi.application'
 # }
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'postgres',
-#         'USER': 'postgres.tcigdsgvetbwjzgvtogz',
-#         'HOST': 'aws-0-eu-central-1.pooler.supabase.com',
-#         'PORT': '5432',
-#         'PASSWORD': 'Whatismaths101',
-#     }
-# }
-
 database_url = os.environ.get("DATABASE_URL")
-# Set default database configuration
+# # Set default database configuration
 
 DATABASES = {
     'default': dj_database_url.parse(database_url)
 }
-
-DATABASES["default"] = dj_database_url.parse(database_url)
 
 
 
@@ -158,12 +144,18 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'home'
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',)
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',)
+# }
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # Default
     # Add other backends as necessary
 ]
 
+# settings.py
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ['knox.auth.TokenAuthentication',
+        # Add other authentication classes if needed
+    ],
+}
