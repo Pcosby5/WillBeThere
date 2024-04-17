@@ -24,6 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -90,11 +91,22 @@ WSGI_APPLICATION = 'will_be_there.wsgi.application'
 
 
 database_url = os.environ.get("DATABASE_URL")
-# # Set default database configuration
+# # # Set default database configuration
 
 DATABASES = {
     'default': dj_database_url.parse(database_url)
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'postgres',
+#         'USER': 'postgres.tcigdsgvetbwjzgvtogz',
+#         'HOST': 'aws-0-eu-central-1.pooler.supabase.com',
+#         'PORT': '5432',
+#         'PASSWORD': 'Whatismaths101',
+#     }
+# }
 
 
 
@@ -159,3 +171,5 @@ REST_FRAMEWORK = {
         # Add other authentication classes if needed
     ],
 }
+
+AUTH_USER_MODEL = 'api.User'

@@ -16,9 +16,12 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.views import APIView
 from knox.auth import TokenAuthentication
+from django.contrib.auth import get_user_model
 
 
 
+
+User = get_user_model()
 class GetProfile(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
@@ -33,6 +36,8 @@ class GetProfile(APIView):
             'last_name': user.last_name,
         }
         return Response(user_details)
+
+
 
 
 class RegisterUserAPI(CreateAPIView):
@@ -76,7 +81,7 @@ class UserDeleteView(generics.DestroyAPIView):
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]  # Ensure only authenticated users can access the list
+    # permission_classes = [IsAuthenticated]  # Ensure only authenticated users can access the list
 
 
 
@@ -85,7 +90,7 @@ class UserDetailView(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     lookup_field = 'id'
-    permission_classes = [IsAuthenticatedOrReadOnly]  # Only authenticated users can view details, others can only read
+    # permission_classes = [IsAuthenticatedOrReadOnly]  # Only authenticated users can view details, others can only read
 
 
 
