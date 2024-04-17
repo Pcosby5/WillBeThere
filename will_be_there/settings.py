@@ -97,16 +97,6 @@ DATABASES = {
     'default': dj_database_url.parse(database_url)
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'postgres',
-#         'USER': 'postgres.tcigdsgvetbwjzgvtogz',
-#         'HOST': 'aws-0-eu-central-1.pooler.supabase.com',
-#         'PORT': '5432',
-#         'PASSWORD': 'Whatismaths101',
-#     }
-# }
 
 
 
