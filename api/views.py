@@ -13,10 +13,10 @@ from knox import views as knox_views
 from django.contrib.auth import login
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.views import APIView
 from knox.auth import TokenAuthentication
 from django.contrib.auth import get_user_model
+from django.http import JsonResponse
 
 
 
@@ -86,10 +86,11 @@ class UserListView(generics.ListAPIView):
 
 
 
-class UserDetailView(generics.RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    lookup_field = 'id'
+class UserDetailView(APIView):
+    def get(self, request, id):
+        user = get_object_or_404(User, id=id)
+        serializer = UserSerializer(user)
+        return JsonResponse(serializer.data)
     # permission_classes = [IsAuthenticatedOrReadOnly]  # Only authenticated users can view details, others can only read
 
 
