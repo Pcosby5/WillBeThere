@@ -12,7 +12,7 @@ User = get_user_model()
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'password', 'type', 'email', 'first_name', 'last_name', 'groups')
+        fields = ('id', 'username', 'password', 'email', 'first_name', 'last_name', 'groups')
 
         extra_kwargs = {
             "password": {"write_only": True},
@@ -30,7 +30,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         # If 'groups' is a many-to-many field you need to handle, pop it before creating the user
         groups_data = validated_data.pop('groups', None)
-        user_type = validated_data.pop('type', None)
+        # user_type = validated_data.pop('type', None)
 
         user = User.objects.create_user(
             username=validated_data['username'],
@@ -40,10 +40,10 @@ class RegisterSerializer(serializers.ModelSerializer):
             last_name=validated_data.get('last_name', ''),
         )
 
-        # Set the user type if it's provided
-        if user_type is not None:
-            user.type = user_type
-            user.save()
+        # # Set the user type if it's provided
+        # if user_type is not None:
+        #     user.type = user_type
+        #     user.save()
 
         # Now handle the many-to-many data separately
         if groups_data:
@@ -55,7 +55,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'type', 'username', 'email', 'first_name', 'last_name')
+        fields = ('id', 'username', 'email', 'first_name', 'last_name')
         read_only_fields = ('id',)  # Ensure 'username' is not in read_only_fields
 
     def update(self, instance, validated_data):
@@ -63,7 +63,7 @@ class UserSerializer(serializers.ModelSerializer):
         instance.email = validated_data.get('email', instance.email)
         instance.first_name = validated_data.get('first_name', instance.first_name)
         instance.last_name = validated_data.get('last_name', instance.last_name)
-        instance.type = validated_data.get('type', instance.type)
+        # instance.type = validated_data.get('type', instance.type)
         instance.save()
         return instance
 
