@@ -40,6 +40,7 @@ ALLOWED_HOSTS =["*"]
 INSTALLED_APPS = [
     'rest_framework',
     'allauth',
+    'allauth.account',
     'knox',
     'api',
     'will_be_there',
@@ -61,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'will_be_there.urls'
