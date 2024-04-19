@@ -10,8 +10,8 @@ from .views import ChangePasswordView
 urlpatterns = [
     path('profile/', GetProfile.as_view(), name='profile'),
     path('login/', views.LoginAPIView.as_view()),
-    path('users/update', UserUpdateApiView.as_view()),
-    path('users/delete', UserDeleteApiView.as_view(), name='user-delete'),
+    path('users/update/', UserUpdateApiView.as_view()),
+    path('users/delete/', UserDeleteApiView.as_view(), name='user-delete'),
     path('users/<uuid:id>/', UserDetailView.as_view(), name='user-detail'),
     path('users/', UserListView.as_view(), name='user-list'),
     path('register/', views.RegisterUserAPI.as_view()),
