@@ -65,19 +65,39 @@ class LoginAPIView(knox_views.LoginView):
 
 
 
-class UpdateUserAPI(UpdateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    lookup_field = 'pk'
+# class UpdateUserAPI(UpdateAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
+#     lookup_field = 'pk'
+#     permission_classes = [IsAuthenticated]
+
+class UserUpdateApiView(APIView):
     permission_classes = [IsAuthenticated]
 
-class UserDeleteView(generics.DestroyAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    lookup_field = 'id'  # You can change this to 'username' or any other unique field if preferred
-    permission_classes = [IsAuthenticated, IsAdminUser]  # can set , IsAdminUser for only admin users to delete
+    def put(self, request):
+        user = request.user  # Use the currently authenticated user
+        serializer = UserSerializer(user, data=request.data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# class UserDeleteView(generics.DestroyAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
+#     lookup_field = 'id'  # You can change this to 'username' or any other unique field if preferred
+#     permission_classes = [IsAuthenticated, IsAdminUser]  # can set , IsAdminUser for only admin users to delete
 
 
+class UserDeleteApiView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request):
+        user = request.user  # Use the currently authenticated user
+        user.delete()
+        return Response({"message": "User deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
 
 
 class UserListView(generics.ListAPIView):
