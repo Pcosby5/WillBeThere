@@ -169,3 +169,33 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'api.User'
+
+
+EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+EMAIL_HOST = 'smtp.elasticemail.com'
+EMAIL_PORT = 2525  # or 587
+EMAIL_HOST_USER = 'pcosby50@gmail.com'  # Replace with your Elastic Email username
+EMAIL_HOST_PASSWORD = '13157CC25857C3365C81FEC33F43D2381EE6'  # Replace with your Elastic Email password
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'pcosby50@gmail.com'  # Replace with your email address
+
+
+from django.core.mail import send_mail
+from django.contrib.auth.models import User
+
+def send_password_reset_email(request, user_id):
+    try:
+        user = User.objects.get(pk=user_id)
+        email_subject = "Password Reset Request"
+        message = "Hi {},\n\nYou have requested a password reset. Please click on the link below to reset your password:\n\nLink here".format(user.first_name)
+        send_mail(
+            email_subject,
+            message,
+            'pcosby50@gmail.com',  # Sender's email
+            [user.email],           # List of recipients - in this case, just the user
+            fail_silently=False,
+        )
+    except User.DoesNotExist:
+        # Handle error if user does not exist
+        pass
+
