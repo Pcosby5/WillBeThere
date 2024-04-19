@@ -15,7 +15,7 @@ import dj_database_url
 import os
 import dotenv
 from django.core.mail import send_mail
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 
 
 dotenv.load_dotenv()
@@ -185,6 +185,7 @@ DEFAULT_FROM_EMAIL = 'pcosby50@gmail.com'  # Replace with your email address
 
 
 def send_password_reset_email(request, user_id):
+    from django.contrib.auth.models import User  # Import User model locally within the function
     try:
         user = User.objects.get(pk=user_id)
         email_subject = "Password Reset Request"
