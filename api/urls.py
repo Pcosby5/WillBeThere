@@ -3,6 +3,8 @@ from .import views
 from knox.views import LogoutView, LogoutAllView
 from .views import UserListView, UserDetailView, UserDeleteView
 from .views import GetProfile
+from .views import ForgotPasswordView
+from .views import ChangePasswordView
 
 
 urlpatterns = [
@@ -15,4 +17,6 @@ urlpatterns = [
     path('register/', views.RegisterUserAPI.as_view()),
     path('logout/', LogoutView.as_view()),
     path('logout-all/', LogoutAllView.as_view()),
+    path('forgot-password/', ForgotPasswordView.as_view(), name='forgot_password'),
+    path('change-password/', ChangePasswordView.as_view(), name='change_password'),
 ]

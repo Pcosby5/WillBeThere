@@ -39,6 +39,7 @@ ALLOWED_HOSTS =["*"]
 
 INSTALLED_APPS = [
     'rest_framework',
+    'allauth',
     'knox',
     'api',
     'will_be_there',
@@ -153,9 +154,10 @@ LOGIN_REDIRECT_URL = 'home'
 # }
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',  # Default
-    # Add other backends as necessary
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
 
 # settings.py
 REST_FRAMEWORK = {

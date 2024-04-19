@@ -17,6 +17,8 @@ from rest_framework.views import APIView
 from knox.auth import TokenAuthentication
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse
+from allauth.account.forms import ResetPasswordForm
+from django.contrib.auth import update_session_auth_hash
 
 
 
@@ -94,4 +96,41 @@ class UserDetailView(APIView):
     # permission_classes = [IsAuthenticatedOrReadOnly]  # Only authenticated users can view details, others can only read
 
 
+class ForgotPasswordView(APIView):
+    def post(self, request, *args, **kwargs):
+        form = ResetPasswordForm(request.data)
+        if form.is_valid():
+            form.save(request=request)
+            return Response({'detail': 'Password reset email has been sent.'}, status=status.HTTP_200_OK)
+        return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class ChangePasswordView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        # Get user from the request
+        user = request.user
+
+        # Get current password and new password from the request data
+        current_password = request.data.get('current_password')
+        new_password = request.data.get('new_password')
+        confirm_new_password = request.data.get('confirm_new_password')
+
+        # Check if new passwords match
+        if new_password != confirm_new_password:
+            return Response({'error': 'New passwords do not match.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Authenticate the user with the current password
+        if not user.check_password(current_password):
+            return Response({'error': 'Current password is incorrect.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Update the user's password
+        user.set_password(new_password)
+        user.save()
+
+        # Update session auth hash
+        update_session_auth_hash(request, user)
+
+        # Return success response
+        return Response({'detail': 'Password has been changed successfully.'}, status=status.HTTP_200_OK)
