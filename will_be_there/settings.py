@@ -14,6 +14,8 @@ from pathlib import Path
 import dj_database_url
 import os
 import dotenv
+from django.core.mail import send_mail
+from django.contrib.auth.models import User
 
 
 dotenv.load_dotenv()
@@ -180,8 +182,7 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'pcosby50@gmail.com'  # Replace with your email address
 
 
-from django.core.mail import send_mail
-from django.contrib.auth.models import User
+
 
 def send_password_reset_email(request, user_id):
     try:
