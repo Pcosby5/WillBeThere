@@ -211,4 +211,4 @@ def send_password_reset_email(request, user_id):
 
 # LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGIN_REDIRECT_URL = '/'  # Specifically for Django Allauth
-
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
