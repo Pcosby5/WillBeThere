@@ -19,11 +19,17 @@ from django.contrib.auth import get_user_model
 from django.http import JsonResponse
 from allauth.account.forms import ResetPasswordForm
 from django.contrib.auth import update_session_auth_hash
-
+from django.shortcuts import render
+# from django.contrib.auth.decorators import login_required
 
 
 
 User = get_user_model()
+
+# @login_required
+def home_view(request):
+    return render(request, 'api/home.html')
+
 class GetProfile(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]

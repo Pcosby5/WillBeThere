@@ -208,3 +208,7 @@ def send_password_reset_email(request, user_id):
         # Handle error if user does not exist
         pass
 
+
+# LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGIN_REDIRECT_URL = '/'  # Specifically for Django Allauth
+

@@ -5,9 +5,11 @@ from .views import UserListView, UserDetailView, UserUpdateApiView, UserDeleteAp
 from .views import GetProfile
 from .views import ForgotPasswordView
 from .views import ChangePasswordView
+from .views import home_view
 
 
 urlpatterns = [
+    path('', home_view, name='home'),
     path('profile/', GetProfile.as_view(), name='profile'),
     path('login/', views.LoginAPIView.as_view()),
     path('users/update/', UserUpdateApiView.as_view()),
