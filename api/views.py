@@ -21,9 +21,7 @@ from allauth.account.forms import ResetPasswordForm
 from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.dispatch import receiver
-from django.contrib.auth.signals import user_logged_in
-from knox.models import AuthToken
+
 
 
 
@@ -164,12 +162,3 @@ class ChangePasswordView(APIView):
         # Return success response
         return Response({'detail': 'Password has been changed successfully.'}, status=status.HTTP_200_OK)
 
-
-
-@receiver(user_logged_in)
-def create_knox_token(sender, request, user, **kwargs):
-    # Check if this is a Google login; adapt based on your application logic
-    if 'google' in request.path:
-        token, created = AuthToken.objects.create(user)
-        # You can now store this token in your front end, or return it in the response where needed
-        return JsonResponse({'token': token, 'created': created})
