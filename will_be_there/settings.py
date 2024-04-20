@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'django.contrib.sites',
     'knox',
     'api',
     'will_be_there',
@@ -55,6 +58,8 @@ INSTALLED_APPS = [
     #'crispy_forms',
     #'crispy_bootstrap4',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
