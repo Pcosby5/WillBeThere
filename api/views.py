@@ -22,10 +22,41 @@ from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
-
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from knox.auth import AuthToken
 
 
 User = get_user_model()
+class GoogleLoginView(APIView):
+    permission_classes = [AllowAny]
+    adapter_class = GoogleOAuth2Adapter
+
+    def post(self, request):
+        # Use allauth to handle the Google authentication process
+        adapter = self.adapter_class(request)
+        user, token = adapter.complete_login(request)
+
+        if user.is_authenticated:
+            # Generate Knox token for the authenticated user
+            knox_token = AuthToken.objects.create(user)[1]
+
+            return Response({
+                'user': {
+                    'username': user.username,
+                    'email': user.email,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name
+                    # Include any other user information you need
+                },
+                'token': knox_token  # Return the Knox token
+            }, status=status.HTTP_200_OK)
+
+        return Response({'error': 'Authentication failed'}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+
+
+
 
 @login_required
 def home_view(request):
