@@ -14,7 +14,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'password', 'email', 'first_name', 'last_name', 'groups', 'profile_image_url')
+        fields = ('id', 'username', 'password', 'email', 'first_name', 'last_name', 'profile_image_url')
 
         extra_kwargs = {
             "password": {"write_only": True},
@@ -31,7 +31,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         # If 'groups' is a many-to-many field you need to handle, pop it before creating the user
-        groups_data = validated_data.pop('groups', None)
+        # groups_data = validated_data.pop('groups', None)
         profile_image_url = validated_data.pop('profile_image_url', None)  # Add this line
 
         user = User.objects.create_user(
@@ -48,8 +48,8 @@ class RegisterSerializer(serializers.ModelSerializer):
             user.save()
 
         # Now handle the many-to-many data separately
-        if groups_data:
-            user.groups.set(groups_data)
+        # if groups_data:
+        #     user.groups.set(groups_data)
 
         return user
 
