@@ -6,9 +6,10 @@ from .views import GetProfile
 from .views import ForgotPasswordView
 from .views import ChangePasswordView
 from .views import home_view
-
+from .views import GoogleLoginView
 
 urlpatterns = [
+    path('accounts/google/login/', GoogleLoginView.as_view(), name='google_login'),
     path('', home_view, name='home'),
     path('profile/', GetProfile.as_view(), name='profile'),
     path('login/', views.LoginAPIView.as_view()),
