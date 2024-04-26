@@ -14,6 +14,8 @@ from pathlib import Path
 import dj_database_url
 import os
 import dotenv
+import corsheaders
+
 from django.core.mail import send_mail
 # from django.contrib.auth.models import User
 
