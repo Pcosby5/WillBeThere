@@ -219,4 +219,97 @@ https://will-be-there-auth-server.onrender.com/
 
 
 
+- **/api/forgot-password**
+  - **Method**: POST
+  - **Description**: Endpoint for changing a user password if they do not remember the password.
+  - **Request Body**:
+    ```
+    {
+	"email":
+		"domprehtabitha@gmail.com"
 
+    }
+    ```
+  - **Response**:
+    ```
+    {
+	"detail": "Password reset email has been sent.",
+    "new_password": "set new password.",
+    "confirm_password": "set new password.",
+    }
+    ```
+  - **Authentication Required**: Yes
+
+
+
+
+
+- **/api/logout**
+  - **Method**: POST
+  - **Description**: Endpoint for logging out user.
+  - **Request Body**:
+    ```
+    {
+	"Authorization":
+		"token"
+
+    }
+    ```
+  - **Response**:
+    ```
+    {
+	"detail": "Logout succesfull or success 200 ok message.",
+
+    }
+    ```
+  - **Authentication Required**: Yes
+
+
+
+
+- **/api/users/delete**
+  - **Method**: POST
+  - **Description**: Endpoint for deleting out user.
+  - **Request Body**:
+    ```
+    {
+	"Authorization":
+		"token"
+
+    }
+    ```
+  - **Response**:
+    ```
+    {
+	"detail": "delete success or success 200 ok message.",
+
+    }
+    ```
+  - **Authentication Required**: Yes
+
+
+
+
+- **/api/users/update**
+  - **Method**: POST
+  - **Description**: Endpoint for updating user.
+  - **Request Body**:
+    ```
+    {
+	"Authorization":
+		"token"
+
+    }
+    ```
+  - **Response**:
+    ```
+    {
+	"id": "12e26b03-472b-4dd9-874b-c2e0d1e714ee",
+	"username": "pcosby500",
+	"email": "domprehtabitha@gmail.com",
+	"first_name": "example111",
+	"last_name": "example",
+	"profile_image_url": null
+    }
+    ```
+  - **Authentication Required**: Yes
