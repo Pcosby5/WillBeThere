@@ -313,3 +313,22 @@ https://will-be-there-auth-server.onrender.com/
     }
     ```
   - **Authentication Required**: Yes
+
+
+```
+## User- Auth
+Login User - https://will-be-there-auth-server.onrender.com/api/login/
+Register user - https://will-be-there-auth-server.onrender.com/api/register/
+Logout user - https://will-be-there-auth-server.onrender.com/api/logout/
+Google login - https://will-be-there-auth-server.onrender.com/accounts/google/login/
+Change-password - https://will-be-there-auth-server.onrender.com/api/change-password/
+Forgot-password - https://will-be-there-auth-server.onrender.com/api/forgot-password/
+
+## User management and Details
+User-update - https://will-be-there-auth-server.onrender.com/api/users/update/
+User-delete - https://will-be-there-auth-server.onrender.com/api/users/delete/
+Get all users - https://will-be-there-auth-server.onrender.com/api/users/
+Get Users by User id - https://will-be-there-auth-server.onrender.com/api/users/user_id/
+
+
+```
