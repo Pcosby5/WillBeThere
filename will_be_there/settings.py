@@ -198,7 +198,7 @@ AUTH_USER_MODEL = 'api.User'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.elasticemail.com'
-EMAIL_PORT = 465  # or 587
+EMAIL_PORT = 2525  # or 587
 EMAIL_HOST_USER = 'eugenehart6113@gmail.com'  # Replace with your Elastic Email username
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD_1")
 EMAIL_USE_TLS = False
