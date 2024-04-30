@@ -199,11 +199,11 @@ AUTH_USER_MODEL = 'api.User'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.elasticemail.com'
 EMAIL_PORT = 465  # or 587
-EMAIL_HOST_USER = 'pcosby50@gmail.com'  # Replace with your Elastic Email username
+EMAIL_HOST_USER = 'eugenehart6113@gmail.com'  # Replace with your Elastic Email username
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD_1")
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = 'pcosby50@gmail.com'  # Replace with your email address
+DEFAULT_FROM_EMAIL = 'eugenehart6113@gmail.com'  # Replace with your email address
 
 
 
@@ -217,7 +217,7 @@ def send_password_reset_email(request, user_id):
         send_mail(
             email_subject,
             message,
-            'pcosby50@gmail.com',  # Sender's email
+            'eugenehart6113@gmail.com',  # Sender's email
             [user.email],           # List of recipients - in this case, just the user
             fail_silently=False,
         )
@@ -226,6 +226,6 @@ def send_password_reset_email(request, user_id):
         pass
 
 
-# LOGIN_REDIRECT_URL = '/'
+
 # ACCOUNT_LOGIN_REDIRECT_URL = '/'  # Specifically for Django Allauth
 # ACCOUNT_LOGOUT_REDIRECT_URL = '/'
