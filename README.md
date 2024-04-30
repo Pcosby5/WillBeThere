@@ -315,7 +315,7 @@ https://will-be-there-auth-server.onrender.com/
   - **Authentication Required**: Yes
 
 
-```
+
 ## User- Auth
 Login User - https://will-be-there-auth-server.onrender.com/api/login/
 Register user - https://will-be-there-auth-server.onrender.com/api/register/
@@ -331,4 +331,3 @@ Get all users - https://will-be-there-auth-server.onrender.com/api/users/
 Get Users by User id - https://will-be-there-auth-server.onrender.com/api/users/user_id/
 
 
-```
