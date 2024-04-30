@@ -317,17 +317,17 @@ https://will-be-there-auth-server.onrender.com/
 
 
 ## User- Auth
-Login User - https://will-be-there-auth-server.onrender.com/api/login/
-Register user - https://will-be-there-auth-server.onrender.com/api/register/
-Logout user - https://will-be-there-auth-server.onrender.com/api/logout/
-Google login - https://will-be-there-auth-server.onrender.com/accounts/google/login/
-Change-password - https://will-be-there-auth-server.onrender.com/api/change-password/
-Forgot-password - https://will-be-there-auth-server.onrender.com/api/forgot-password/
+Login User - https://will-be-there-auth-server.onrender.com/api/login/ <br>
+Register user - https://will-be-there-auth-server.onrender.com/api/register/ <br>
+Logout user - https://will-be-there-auth-server.onrender.com/api/logout/ <br>
+Google login - https://will-be-there-auth-server.onrender.com/accounts/google/login/ <br>
+Change-password - https://will-be-there-auth-server.onrender.com/api/change-password/ <br>
+Forgot-password - https://will-be-there-auth-server.onrender.com/api/forgot-password/ <br>
 
 ## User management and Details
-User-update - https://will-be-there-auth-server.onrender.com/api/users/update/
-User-delete - https://will-be-there-auth-server.onrender.com/api/users/delete/
-Get all users - https://will-be-there-auth-server.onrender.com/api/users/
-Get Users by User id - https://will-be-there-auth-server.onrender.com/api/users/user_id/
+User-update - https://will-be-there-auth-server.onrender.com/api/users/update/ <br>
+User-delete - https://will-be-there-auth-server.onrender.com/api/users/delete/ <br>
+Get all users - https://will-be-there-auth-server.onrender.com/api/users/ <br>
+Get Users by User id - https://will-be-there-auth-server.onrender.com/api/users/user_id/ <br>
 
 
