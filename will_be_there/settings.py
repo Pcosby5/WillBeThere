@@ -50,6 +50,29 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 
+# If you need to support specific HTTP methods:
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS"
+]
+
+# If you need to allow specific headers:
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
 # Application definition
 
 INSTALLED_APPS = [
