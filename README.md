@@ -9,14 +9,14 @@
 
 ## Available Routes
 
-- **/api/auth/login**
+- **/api/login**
   - **Method**: POST
   - **Description**: Endpoint for user login.
   - **Request Body**:
     ```
     {
-      "username": "pcosby50",
-      "password": "example111"
+	"username": "pcosby500",
+    "password": "**********"
     }
     ```
   - **Response**:
@@ -27,37 +27,57 @@
     ```
   - **Authentication Required**: No
 
-- **/api/auth/register**
+- **/api/register**
   - **Method**: POST
   - **Description**: Endpoint for user registration.
   - **Request Body**:
     ```
     {
-      "username": "pcosby50",
-      "password": "example111"
-      "email": "example111@gmail.com"
-      "first_name": "example111"
-      "last_name": "example"
+	"username": "pcosby500",
+    "password": "*********",
+    "email": "example111@gmail.com",
+    "first_name": "example111",
+    "last_name": "example"
     }
     ```
   - **Response**:
     ```
     {
-      "username": "pcosby50",
-      "password": "example111"
-      "email": "example111@gmail.com"
-      "first_name": "example111"
-      "last_name": "example"
+	"id": "12e26b03-472b-4dd9-874b-c2e0d1e714ee",
+	"username": "pcosby500",
+	"email": "example111@gmail.com",
+	"first_name": "example111",
+	"last_name": "example",
+	"profile_image_url": null
     }
     ```
   - **Authentication Required**: No
 
 
 
-- **/api/auth/password/reset**
-  - **Method**: POST
-  - **Description**: Endpoint for resetting user password.
-  - ...
+- **/api/profile**
+  - **Method**: GET
+  - **Description**: Endpoint for getting user profile.
+  - **Request Body**:
+    ```
+    {
+	"Authorization": "Login Token",
+
+    }
+    ```
+  - **Response**:
+    ```
+    {
+	"id": "12e26b03-472b-4dd9-874b-c2e0d1e714ee",
+	"username": "pcosby500",
+	"email": "example111@gmail.com",
+	"first_name": "example111",
+	"last_name": "example",
+	"profile_image_url": null
+    }
+    ```
+  - **Authentication Required**: Yes
+
 
 
 
