@@ -38,9 +38,9 @@ DEBUG = True
 
 ALLOWED_HOSTS =["*"]
 
-CORS_ORIGIN_ALLOW_ALL = True 
+CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ALLOW_ALL_ORIGIN = True 
+CORS_ALLOW_ALL_ORIGIN = True
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -200,7 +200,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.elasticemail.com'
 EMAIL_PORT = 465  # or 587
 EMAIL_HOST_USER = 'pcosby50@gmail.com'  # Replace with your Elastic Email username
-# EMAIL_HOST_PASSWORD = '13157CC25857C3365C81FEC33F43D2381EE6'  # Replace with your Elastic Email password
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD_1")
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True

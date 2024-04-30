@@ -6,8 +6,11 @@
 - **Framework**: Django
 - **Additional Libraries**: Django REST Framework
 
+## Base-Url
+https://will-be-there-auth-server.onrender.com/
 
-## Available Routes
+
+## Documentation for Available Routes
 
 - **/api/login**
   - **Method**: POST
@@ -167,13 +170,53 @@
 
 
 
+- **/api/change-password**
+  - **Method**: POST
+  - **Description**: Endpoint for changing a user password if they remember the password.
+  - **Request Body**:
+    ```
+    {
+
+	"current_password": "Do******",
+	"new_password": "Gif******",
+	"confirm_new_password": "Gif******"
+
+    }
+    ```
+  - **Response**:
+    ```
+    {
+	"detail": "Password has been changed successfully."
+    }
+    ```
+  - **Authentication Required**: Yes
 
 
-## Documentation for Available Routes
 
-### /api/auth/login
 
-- **Method**: POST
-- **Description**: Endpoint for user login.
-- **Request Body**:
+
+- **/google/login/**
+  - **Method**: POST
+  - **Description**: Endpoint for signing up as a google account user.
+  - **Request Body**:
+    ```
+    {
+
+	"Authorization": "null"
+
+    }
+    ```
+  - **Response**:
+    ```
+    {
+	"continue to google"
+    }
+    ```
+  - **Authentication Required**: No
+
+
+
+
+
+
 
