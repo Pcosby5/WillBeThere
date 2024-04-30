@@ -217,7 +217,7 @@ def send_password_reset_email(request, user_id):
         send_mail(
             email_subject,
             message,
-            'eugenehart6113@gmail.com',  # Sender's email
+            'pcosby50@gmail.com',  # Sender's email
             [user.email],           # List of recipients - in this case, just the user
             fail_silently=False,
         )
